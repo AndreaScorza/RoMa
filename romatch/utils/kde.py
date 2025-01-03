@@ -8,6 +8,7 @@ def kde(x, std = 0.1, half = True, down = None):
     if down is not None:
         scores = (-torch.cdist(x,x[::down])**2/(2*std**2)).exp()
     else:
+        x = x.float()
         scores = (-torch.cdist(x,x)**2/(2*std**2)).exp()
     density = scores.sum(dim=-1)
-    return density
+    return density 
